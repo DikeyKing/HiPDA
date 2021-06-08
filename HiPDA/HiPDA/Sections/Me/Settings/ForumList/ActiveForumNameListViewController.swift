@@ -13,7 +13,7 @@ import RxDataSources
 import Then
 
 /// 版块列表
-class ActiveForumNameListViewController: EditWordListViewController {
+@objc class ActiveForumNameListViewController: EditWordListViewController {
     /// 当前可用的版块列表
     var activeForumNameList = [String]() {
         didSet {

@@ -39,7 +39,7 @@ private enum InputViewType {
 
 class NewThreadViewController: BaseViewController {
     var draft: Draft?
-    var draftSendSuccessCompletion: ((Void) -> Void)?
+    var draftSendSuccessCompletion: (() -> Void)?
     var draftEditCompleted: ((Draft) -> Void)?
     var type = NewThreadType.new(fid: 0)
     var typeNames = [String]()
@@ -116,7 +116,7 @@ class NewThreadViewController: BaseViewController {
     
     override func configureApperance(of navigationBar: UINavigationBar) {
         let closeButton =  UIBarButtonItem(image: #imageLiteral(resourceName: "navigationbar_close"), style: .plain, target: nil, action: nil)
-        closeButton.rx.tap.bindTo(closePublishSubject).disposed(by: disposeBag)
+        closeButton.rx.tap.bind(to: closePublishSubject).disposed(by: disposeBag)
         let postButton = UIBarButtonItem(image: #imageLiteral(resourceName: "new_thread_sent"), style: .plain, target: self, action: #selector(post))
         sendButtons.append(postButton)
         postButton.isEnabled = false
@@ -268,12 +268,12 @@ extension NewThreadViewController {
         navigationController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
-    func post() {
+    @objc func post() {
         view.endEditing(true)
         sendButtonPressedPublishSubject.onNext(())
     }
     
-    func photoButtonPressed() {
+    @objc func photoButtonPressed() {
         view.endEditing(true)
         PHPhotoLibrary.checkPhotoLibraryPermission { granted in
             if granted {
@@ -289,7 +289,7 @@ extension NewThreadViewController {
         }
     }
     
-    func emojiButtonPressed(_ sender: UIBarButtonItem) {
+    @objc func emojiButtonPressed(_ sender: UIBarButtonItem) {
         contentInputViewType = contentInputViewType.opposition
         let image: UIImage
         let inputView: UIView?

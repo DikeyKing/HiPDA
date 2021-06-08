@@ -1,16 +1,12 @@
-Then
-====
+# Then
 
-![Swift](https://img.shields.io/badge/Swift-3.0-orange.svg)
-[![Build Status](https://travis-ci.org/devxoul/Then.svg?branch=master)](https://travis-ci.org/devxoul/Then)
+![Swift](https://img.shields.io/badge/Swift-5.0-orange.svg)
 [![CocoaPods](http://img.shields.io/cocoapods/v/Then.svg)](https://cocoapods.org/pods/Then)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Build Status](https://travis-ci.org/devxoul/Then.svg?branch=master)](https://travis-ci.org/devxoul/Then)
 
 ✨ Super sweet syntactic sugar for Swift initializers.
 
-
-At a Glance
------------
+## At a Glance
 
 Initialize UILabel **then** set its properties.
 
@@ -34,9 +30,7 @@ let label: UILabel = {
 }()
 ```
 
-
-Tips and Tricks
----------------
+## Tips and Tricks
 
 - You can use `then()` to all of `NSObject` subclasses.
 
@@ -77,9 +71,7 @@ Tips and Tricks
     }
     ```
 
-
-Real World Example
-------------------
+## Real World Example
 
 Here's an example usage in an UIViewController subclass.
 
@@ -106,26 +98,12 @@ final class MyViewController: UIViewController {
 }
 ```
 
+## Installation
 
-Installation
-------------
-
-- **For iOS 8+ projects** with [CocoaPods](https://cocoapods.org):
+- **Using  [CocoaPods](https://cocoapods.org)**:
 
     ```ruby
-    pod 'Then', '~> 2.1'
-    ```
-
-- **For iOS 8+ projects** with [Carthage](https://github.com/Carthage/Carthage):
-
-    ```
-    github "devxoul/Then" ~> 2.1
-    ```
-
-- **For iOS 7 projects** with [CocoaSeeds](https://github.com/devxoul/CocoaSeeds):
-
-    ```ruby
-    github 'devxoul/Then', '2.1.0', :files => 'Sources/*.swift'
+    pod 'Then'
     ```
 
 - **Using [Swift Package Manager](https://swift.org/package-manager)**:
@@ -136,13 +114,11 @@ Installation
     let package = Package(
       name: "MyAwesomeApp",
       dependencies: [
-        .Package(url: "https://github.com/devxoul/Then", "2.1.0"),
+        .Package(url: "https://github.com/devxoul/Then", majorVersion: 2),
       ]
     )
     ```
 
-
-License
--------
+## License
 
 **Then** is under MIT license. See the [LICENSE](LICENSE) file for more info.

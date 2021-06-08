@@ -133,13 +133,13 @@ class SearchViewModel {
     fileprivate static func attributedString(from content: String, fontSize: CGFloat, ranges: [NSRange]) -> NSAttributedString {
         let attri = NSMutableAttributedString(string: content)
         for range in ranges {
-            attri.addAttributes([NSForegroundColorAttributeName: UIColor.red], range: range)
+            attri.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.red], range: range)
         }
         let fullRange = NSRange(location: 0, length: (content as NSString).length)
-        attri.addAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: fontSize)], range: fullRange)
+        attri.addAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: fontSize)], range: fullRange)
         let paragraphStye = NSMutableParagraphStyle()
         paragraphStye.lineBreakMode = .byCharWrapping
-        attri.addAttributes([NSParagraphStyleAttributeName: paragraphStye], range: fullRange)
+        attri.addAttributes([NSAttributedStringKey.paragraphStyle: paragraphStye], range: fullRange)
         
         return attri
     }

@@ -143,14 +143,14 @@ class EmoticonScrollView: UICollectionView {
         magnifier.isHidden = true
     }
     
-    func startBackspaceTimer() {
+    @objc func startBackspaceTimer() {
         endBackspaceTimer()
         let timer = Timer(timeInterval: 0.1, target: self, selector: #selector(backspace), userInfo: nil, repeats: true)
         backspaceTimer = timer
         RunLoop.main.add(timer, forMode: .commonModes)
     }
     
-    func backspace() {
+    @objc func backspace() {
         guard let cell = currentMagnifierCell, cell.isDelete, let delegate = self.emoticonScrollViewDelegate else { return }
         
         UIDevice.current.playInputClick()

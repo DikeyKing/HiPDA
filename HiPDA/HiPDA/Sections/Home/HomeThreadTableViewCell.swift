@@ -90,8 +90,8 @@ class HomeThreadTableViewCell: UITableViewCell {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineBreakMode = .byCharWrapping
         let attributes = [
-            NSParagraphStyleAttributeName: paragraphStyle,
-            NSFontAttributeName: UIFont.systemFont(ofSize: 17.0)
+            NSAttributedStringKey.paragraphStyle: paragraphStyle,
+            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 17.0)
         ]
         let height = (text as NSString).boundingRect(with: CGSize(width: C.UI.screenWidth - 2 * titleMargin, height: .greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: attributes, context: nil).height
         return height.pixelCeil

@@ -8,7 +8,7 @@
 
 import Foundation
 import Moya
-import Result
+//import Result
 
 enum NetworkError:Int, Swift.Error {
     case timeOut = -1001 // NSURLErrorTimedOut
@@ -45,9 +45,9 @@ public final class ErrorHandlePlugin: PluginType {
             let code = error.code
             var userInfo = error.userInfo
             userInfo[NSLocalizedDescriptionKey] = networkError.description
-            return Result.failure(.underlying(NSError(domain: domain, code: code, userInfo: userInfo)))
+            return Result.failure(.underlying(NSError(domain: domain, code: code, userInfo: userInfo), nil))
         } else if case let .success(response) = result, response.statusCode == NetworkError.forbidden.rawValue {
-            return Result.failure(.underlying(NSError(domain: "HiPDA", code: NetworkError.forbidden.rawValue, userInfo: [NSLocalizedDescriptionKey : NetworkError.forbidden.description])))
+            return Result.failure(.underlying(NSError(domain: "HiPDA", code: NetworkError.forbidden.rawValue, userInfo: [NSLocalizedDescriptionKey : NetworkError.forbidden.description]), nil))
         } else {
             return result
         }

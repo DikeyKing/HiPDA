@@ -14,11 +14,11 @@ class BrowseHistoryViewModel {
     fileprivate var threads: [HiPDA.Thread] = []
     fileprivate var models = [HomeThreadModel]()
     
-    func loadData(completion: @escaping (Void) -> Void) {
+    func loadData(completion: @escaping () -> Void) {
         DispatchQueue.global().async {
             let cache = CacheManager.threadsReadHistory.shared
             self.cache = cache
-            let threads = cache?.tids.flatMap { cache?.thread(for: $0) } ?? []
+            let threads = cache?.tids.compactMap { cache?.thread(for: $0) } ?? []
             self.models = threads.map(threadModel(from:))
             self.threads = threads
             DispatchQueue.main.async {

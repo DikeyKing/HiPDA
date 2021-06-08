@@ -2,12 +2,11 @@ import Foundation
 
 // MARK: Escaping
 
-public extension String {
+extension String {
 
     ///
-    /// Returns a new string made from the `String` by replacing every character
-    /// incompatible with HTML Unicode encoding (UTF-16 or UTF-8) by a decimal
-    /// HTML entity.
+    /// Returns a copy of the current `String` where every character incompatible with HTML Unicode
+    /// encoding (UTF-16 or UTF-8) is replaced by a decimal HTML entity.
     ///
     /// ### Examples
     ///
@@ -18,16 +17,26 @@ public extension String {
     /// | `🇺🇸` | `🇺🇸` | Not escaped (Unicode compliant) |
     /// | `a` | `a` | Not escaped (alphanumerical) |
     ///
-    /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
-    ///
 
-    public var addingUnicodeEntities: String {
-        return unicodeScalars.reduce("") { $0 + $1.escapingIfNeeded }
+    public func addingUnicodeEntities() -> String {
+        var result = ""
+
+        for character in self {
+            if HTMLStringMappings.unsafeUnicodeCharacters.contains(character) {
+                // One of the required escapes for security reasons
+                result.append(contentsOf: "&#\(character.asciiValue!);")
+            } else {
+                // Not a required escape, no need to replace the character
+                result.append(character)
+            }
+        }
+
+        return result
     }
 
     ///
-    /// Returns a new string made from the `String` by replacing every character
-    /// incompatible with HTML ASCII encoding by a decimal HTML entity.
+    /// Returns a copy of the current `String` where every character incompatible with HTML ASCII
+    /// encoding is replaced by a decimal HTML entity.
     ///
     /// ### Examples
     ///
@@ -40,17 +49,31 @@ public extension String {
     ///
     /// ### Performance
     ///
-    /// If your webpage is unicode encoded (UTF-16 or UTF-8) use `escapingForUnicodeHTML` instead 
-    /// as it is faster, and produces less bloated and more readable HTML (as long as you are using 
-    /// a unicode compliant HTML reader).
-    ///
-    /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
+    /// If your webpage is unicode encoded (UTF-16 or UTF-8) use `addingUnicodeEntities` instead,
+    /// as it is faster and produces a less bloated and more readable HTML.
     ///
 
-    public var addingASCIIEntities: String {
-        return unicodeScalars.reduce("") { $0 + $1.escapingForASCII }
+    public func addingASCIIEntities() -> String {
+        var result = ""
+
+        for character in self {
+            if let asciiiValue = character.asciiValue {
+                if HTMLStringMappings.unsafeUnicodeCharacters.contains(character) {
+                    // One of the required escapes for security reasons
+                    result.append(contentsOf: "&#\(asciiiValue);")
+                } else {
+                    // Not a required escape, no need to replace the character
+                    result.append(character)
+                }
+            } else {
+                // Not an ASCII Character, we need to escape.
+                let escape = character.unicodeScalars.reduce(into: "") { $0 += "&#\($1.value);" }
+                result.append(contentsOf: escape)
+            }
+        }
+
+        return result
     }
-
 }
 
 // MARK: - Unescaping
@@ -58,8 +81,7 @@ public extension String {
 extension String {
 
     ///
-    /// Returns a new string made from the `String` by replacing every HTML entity
-    /// with the matching Unicode character.
+    /// Replaces every HTML entity in the receiver with the matching Unicode character.
     ///
     /// ### Examples
     ///
@@ -72,123 +94,80 @@ extension String {
     /// | `a` | `a` | Not an entity |
     /// | `&` | `&` | Not an entity |
     ///
-    /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
-    ///
 
-    public var removingHTMLEntities: String {
+    public func removingHTMLEntities() -> String {
+        var result = ""
+        var currentIndex = startIndex
 
-        guard self.contains("&") else {
-            return self
-        }
-
-        var result = String()
-        var idx = startIndex
-
-        while let delimiterRange = range(of: "&", range: idx ..< endIndex) {
-
+        while let delimiterIndex = self[currentIndex...].firstIndex(of: "&") {
             // Avoid unnecessary operations
-            let head = self[idx ..< delimiterRange.lowerBound]
-            result += head
+            var semicolonIndex = self.index(after: delimiterIndex)
 
-            guard let semicolonRange = range(of: ";", range: delimiterRange.upperBound ..< endIndex) else {
-                result += "&"
-                idx = delimiterRange.upperBound
-                break
-            }
+            // Parse the last sequence (ex: Fish & chips &amp; sauce -> "&amp;" instead of "& chips &amp;")
+            var lastDelimiterIndex = delimiterIndex
 
-            let escapableContent = self[delimiterRange.upperBound ..< semicolonRange.lowerBound]
-            let replacementString: String
-
-            if escapableContent.hasPrefix("#") {
-
-                guard let unescapedNumber = escapableContent.unescapeAsNumber() else {
-                    result += self[delimiterRange.lowerBound ..< semicolonRange.upperBound]
-                    idx = semicolonRange.upperBound
-                    continue
+            while semicolonIndex != endIndex, self[semicolonIndex] != ";" {
+                if self[semicolonIndex] == "&" {
+                    lastDelimiterIndex = semicolonIndex
                 }
 
-                replacementString = unescapedNumber
+                semicolonIndex = self.index(after: semicolonIndex)
+            }
 
+            // Fast path if semicolon doesn't exists in current range
+            if semicolonIndex == endIndex {
+                result.append(contentsOf: self[currentIndex..<semicolonIndex])
+                return result
+            }
+
+            let escapableRange = index(after: lastDelimiterIndex) ..< semicolonIndex
+            let escapableContent = self[escapableRange]
+
+            result.append(contentsOf: self[currentIndex..<lastDelimiterIndex])
+
+            let cursorPosition: Index
+            if let unescapedNumber = escapableContent.unescapeAsNumber() {
+                result.append(contentsOf: unescapedNumber)
+                cursorPosition = self.index(semicolonIndex, offsetBy: 1)
+            } else if let unescapedCharacter = HTMLStringMappings.unescapingTable[String(escapableContent)] {
+                result.append(contentsOf: unescapedCharacter)
+                cursorPosition = self.index(semicolonIndex, offsetBy: 1)
             } else {
-
-                guard let unescapedCharacter = HTMLTables.unescapingTable[escapableContent] else {
-                    result += self[delimiterRange.lowerBound ..< semicolonRange.upperBound]
-                    idx = semicolonRange.upperBound
-                    continue
-                }
-
-                replacementString = unescapedCharacter
-
+                result.append(self[lastDelimiterIndex])
+                cursorPosition = self.index(after: lastDelimiterIndex)
             }
 
-            result += replacementString
-            idx = semicolonRange.upperBound
-
+            currentIndex = cursorPosition
         }
 
-        // Append unprocessed data, if unprocessed data there is
-        let tail = self[idx ..< endIndex]
-        result += tail
+        result.append(contentsOf: self[currentIndex...])
 
         return result
-
     }
+}
 
-    private func unescapeAsNumber() -> String? {
+// MARK: - Helpers
 
-        let isHexadecimal = self.hasPrefix("#X") || self.hasPrefix("#x")
+extension StringProtocol {
 
-        let numberStartIndexOffset = isHexadecimal ? 2 : 1
-        let numberString = self [ index(startIndex, offsetBy: numberStartIndexOffset) ..< endIndex ]
+    /// Unescapes the receives as a number if possible.
+    fileprivate func unescapeAsNumber() -> String? {
+        guard hasPrefix("#") else { return nil }
 
+        let unescapableContent = self.dropFirst()
+        let isHexadecimal = unescapableContent.hasPrefix("x") || hasPrefix("X")
         let radix = isHexadecimal ? 16 : 10
 
-        guard let codePoint = UInt32(numberString, radix: radix),
-              let scalar = UnicodeScalar(codePoint) else {
+        guard let numberStartIndex = unescapableContent.index(unescapableContent.startIndex, offsetBy: isHexadecimal ? 1 : 0, limitedBy: unescapableContent.endIndex) else {
+            return nil
+        }
+
+        let numberString = unescapableContent[numberStartIndex ..< endIndex]
+
+        guard let codePoint = UInt32(numberString, radix: radix), let scalar = UnicodeScalar(codePoint) else {
             return nil
         }
 
         return String(scalar)
-
     }
-
-}
-
-// MARK: - UnicodeScalar+Escape
-
-extension UnicodeScalar {
-
-    ///
-    /// Returns the decimal HTML entity of the Unicode scalar.
-    ///
-    /// This allows you to perform custom escaping.
-    ///
-
-    public var htmlEscaped: String {
-        return "&#" + String(value) + ";"
-    }
-
-    ///
-    /// The scalar escaped for ASCII encoding.
-    ///
-
-    fileprivate var escapingForASCII: String {
-        return isASCII ? escapingIfNeeded : htmlEscaped
-    }
-
-    ///
-    /// Escapes the scalar only if it needs to be escaped for Unicode pages.
-    ///
-    /// [Reference](http://wonko.com/post/html-escaping)
-    /// 
-
-    fileprivate var escapingIfNeeded: String {
-
-        switch value {
-        case 33, 34, 36, 37, 38, 39, 43, 44, 60, 61, 62, 64, 91, 93, 96, 123, 125: return htmlEscaped
-        default: return String(self)
-        }
-
-    }
-
 }

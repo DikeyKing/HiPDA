@@ -106,7 +106,7 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
         NotificationCenter.default.removeObserver(self, name: .ImageAssetDownloadProgress, object: asset)
     }
     
-    func didReceiveDownloadProgressNotification(_ notification: Notification) {
+    @objc func didReceiveDownloadProgressNotification(_ notification: Notification) {
         guard let asset = asset else { return }
         let isDownloading = asset.isDownloading
         let progress = asset.downloadPercent
@@ -125,7 +125,7 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
         NotificationCenter.default.removeObserver(self, name: .ImageAssetsCollectionDidChange, object: assetsCollection)
     }
     
-    func didReceivedAssetsCollectionChangedNotification(_ notification: Notification) {
+    @objc func didReceivedAssetsCollectionChangedNotification(_ notification: Notification) {
         guard let asset = asset, !asset.isDownloading else { return }
         if let index = assetsCollection?.index(of: asset) {
             stateIndicator.selectionNumber = index + 1

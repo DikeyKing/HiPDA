@@ -50,8 +50,10 @@ class AboutViewController: UITableViewController {
     }
     
     fileprivate func showAcknowledgementsViewController() {
-        let path = Bundle.main.path(forResource: "Pods-HiPDA-acknowledgements", ofType: "plist")
-        let viewController = AcknowListViewController(acknowledgementsPlistPath: path)
+        guard let path = Bundle.main.path(forResource: "Pods-HiPDA-acknowledgements", ofType: "plist") else {
+            return
+        }
+        let viewController = AcknowListViewController(plistPath: path)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationController?.pushViewController(viewController, animated: true)
     }

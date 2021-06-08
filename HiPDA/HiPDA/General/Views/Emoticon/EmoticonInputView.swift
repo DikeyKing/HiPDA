@@ -182,7 +182,7 @@ extension EmoticonInputView {
 // MARK: - Button Action
 
 extension EmoticonInputView {
-    func toolbarButtonDidTapped(_ sender: UIButton) {
+    @objc func toolbarButtonDidTapped(_ sender: UIButton) {
         let groupIndex = sender.tag
         let page = emoticonGroupPageIndexes[groupIndex]
         let rect = CGRect(x: CGFloat(page) * collectionView.frame.size.width, y: 0, width: collectionView.frame.size.width, height: collectionView.frame.size.height)

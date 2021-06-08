@@ -70,8 +70,9 @@ public class ObservableProperty<ValueType> {
 
       - parameter callback: The function to call when the value changes.
     */
-    public func subscribe(callback: @escaping CallbackType) {
-        subscriptions.append(callback)
+    public func subscribe(callback: CallbackType) {
+//        subscriptions.append(callback)
+        #warning("todo..")
     }
 
     private func notifySubscriptions() {

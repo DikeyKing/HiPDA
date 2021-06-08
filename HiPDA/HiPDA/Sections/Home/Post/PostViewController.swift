@@ -29,23 +29,23 @@ class PostViewController: BaseViewController {
     fileprivate var postOperationViewController: PostOperationViewController?
     fileprivate var isLoading = false
     fileprivate var isErrorOccured = false
-    fileprivate lazy var moreButton: UIButton = { [unowned self] _ in
+    fileprivate lazy var moreButton: UIButton = {
         let more = UIButton(type: .system)
         more.tintColor = C.Color.navigationBarTintColor
         more.setImage(#imageLiteral(resourceName: "post_more"), for: .normal)
         more.addTarget(self, action: #selector(self.moreButtonPressed), for: .touchUpInside)
         more.frame = CGRect(x: 0.0, y: 0.0, width: 20.0, height: 24.0)
         return more
-        }()
-    fileprivate lazy var activityIndicator: UIActivityIndicatorView = { [unowned self] _ in
+    }()
+    fileprivate lazy var activityIndicator: UIActivityIndicatorView = {
         let frame = CGRect(x: 0.0, y: 0.0, width: 30.0, height: 22.0)
         let indicator = UIActivityIndicatorView(frame: frame)
-        indicator.activityIndicatorViewStyle = .white
+        indicator.activityIndicatorViewStyle = .UIActivityIndicatorViewStyle.medium
         indicator.color = C.Color.navigationBarTintColor
         indicator.startAnimating()
         return indicator
         }()
-    fileprivate lazy var refreshButton: UIButton = { [unowned self] _ in
+    fileprivate lazy var refreshButton: UIButton = {
         let frame = CGRect(x: 0.0, y: 0.0, width: 30.0, height: 22.0)
         let button = UIButton(type: .system)
         button.tintColor = C.Color.navigationBarTintColor
@@ -55,7 +55,7 @@ class PostViewController: BaseViewController {
         button.contentMode = .scaleAspectFit
         return button
         }()
-    fileprivate lazy var replyButton: UIButton = { [unowned self] _ in
+    fileprivate lazy var replyButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = C.Color.navigationBarTintColor
         button.setImage(#imageLiteral(resourceName: "post_reply"), for: .normal)
@@ -63,7 +63,7 @@ class PostViewController: BaseViewController {
         button.frame = CGRect(x: 0.0, y: 0.0, width: 32.0, height: 24.0)
         return button
         }()
-    fileprivate lazy var pageNumberButton: UIButton = { [unowned self] _ in
+    fileprivate lazy var pageNumberButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = C.Color.navigationBarTintColor
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20.0)
@@ -228,7 +228,7 @@ extension PostViewController {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
-    func moreButtonPressed() {
+    @objc func moreButtonPressed() {
         if let postOperationViewController = postOperationViewController {
             postOperationViewController.dismiss()
             self.postOperationViewController = nil
@@ -248,7 +248,7 @@ extension PostViewController {
         loadData()
     }
     
-    func replyButtonPressed() {
+    @objc func replyButtonPressed() {
         postOperationViewController?.dismiss()
         postOperationViewController = nil
         guard let fid = viewModel.fid else {
@@ -265,7 +265,7 @@ extension PostViewController {
         present(navi, animated: true, completion: nil)
     }
     
-    func pageNumberButtonPressed() {
+    @objc func pageNumberButtonPressed() {
         postOperationViewController?.dismiss()
         postOperationViewController = nil
         guard viewModel.totalPage != .max && !isLoading else { return }

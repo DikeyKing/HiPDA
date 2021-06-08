@@ -340,8 +340,8 @@ struct HtmlParser {
         let results = regex.matches(in: html as String, range: NSRange(location: 0, length: html.length))
         for result in results.reversed() {
             let range = result.range
-            let str1 = result.rangeAt(1).location == NSNotFound ? "" : html.substring(with: result.rangeAt(1))
-            let str2 = result.rangeAt(2).location == NSNotFound ? "" : html.substring(with: result.rangeAt(2))
+            let str1 = result.range(at: 1).location == NSNotFound ? "" : html.substring(with: result.range(at: 1))
+            let str2 = result.range(at: 2).location == NSNotFound ? "" : html.substring(with: result.range(at: 2))
             if !str1.isEmpty {
                 html = html.replacingCharacters(in: range, with: str1) as NSString
             } else if !str2.isEmpty {
@@ -358,8 +358,8 @@ struct HtmlParser {
         let results = regex.matches(in: html as String, range: NSRange(location: 0, length: html.length))
         for result in results.reversed() {
             let range = result.range
-            let str1 = result.rangeAt(1).location == NSNotFound ? "" : html.substring(with: result.rangeAt(1))
-            let str2 = result.rangeAt(2).location == NSNotFound ? "" : html.substring(with: result.rangeAt(2))
+            let str1 = result.range(at: 1).location == NSNotFound ? "" : html.substring(with: result.range(at: 1))
+            let str2 = result.range(at: 2).location == NSNotFound ? "" : html.substring(with: result.range(at: 2))
             let emoticon = "\(str1)_\(str2)"
             if let code = EmoticonHelper.nameCodeDic[emoticon] {
                 html = html.replacingCharacters(in: range, with: code) as NSString
@@ -395,7 +395,7 @@ struct HtmlParser {
         let results = regex.matches(in: title as String, range: NSRange(location: 0, length: title.length))
         var index = 0
         for result in results {
-            let contentRange = result.rangeAt(1)
+            let contentRange = result.range(at: 1)
             content.append(title.substring(with: NSRange(location: index, length: result.range.location - index)))
             let range = NSRange(location: content.length, length: contentRange.length)
             ranges.append(range)

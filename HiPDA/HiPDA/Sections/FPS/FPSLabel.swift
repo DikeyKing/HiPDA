@@ -64,7 +64,7 @@ class FPSLabel: UILabel {
     /// 定是调用统计打点次数，除以时间得出FPS
     ///
     /// - parameter link: 定时器
-    func tick(link: CADisplayLink) {
+    @objc func tick(link: CADisplayLink) {
         if lastTime == 0 {
             lastTime = link.timestamp
             return
@@ -87,16 +87,16 @@ class FPSLabel: UILabel {
                             alpha: 1)
         
         let text = NSMutableAttributedString(string: String(format: "%d FPS", Int(round(fps))))
-        text.addAttribute(NSForegroundColorAttributeName,
+        text.addAttribute(NSAttributedStringKey.foregroundColor,
                           value: color,
                           range: NSRange(location: 0, length: text.length - 3))
-        text.addAttribute(NSForegroundColorAttributeName,
+        text.addAttribute(NSAttributedStringKey.foregroundColor,
                           value: UIColor.white,
                           range: NSRange(location: text.length - 3, length: 3))
-        text.addAttribute(NSFontAttributeName,
+        text.addAttribute(NSAttributedStringKey.font,
                           value: fpsFont,
                           range: NSRange(location: 0, length: text.length))
-        text.addAttribute(NSFontAttributeName,
+        text.addAttribute(NSAttributedStringKey.font,
                           value: subFont,
                           range: NSRange(location: text.length - 4, length: 1))
         

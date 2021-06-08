@@ -64,7 +64,7 @@ class LoginViewController: BaseViewController, StoryboardLoadable {
     /// 登录成功后的回调
     var loggedInCompletion: LoggedInCompletionHandler?
     
-    var cancelCompletion: ((Void) -> Void)?
+    var cancelCompletion: (() -> Void)?
     
     // MARK: - life cycle
     

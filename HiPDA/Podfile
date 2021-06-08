@@ -1,24 +1,24 @@
-platform :ios, '9.0'
+platform :ios, '13.0'
 inhibit_all_warnings!
 
 #Debug tools
 def import_debug
     pod 'Reveal-iOS-SDK', :configurations => ['Debug']
     pod 'FLEX', :configurations => ['Debug']
-    pod 'MLeaksFinder', :configurations => ['Debug']
+    # pod 'MLeaksFinder', :configurations => ['Debug']
 end
 
 def import_JSONDecode
-    pod 'Argo', '~> 4.1'
-    pod 'Curry', '~> 3.0.0'
-    pod 'Runes', '~> 4.0'
-    pod 'HandyJSON', '~> 1.6'
+    pod 'Argo'
+    pod 'Curry'
+    pod 'Runes'
+    pod 'HandyJSON'
 end
 
 def import_Rx
-    pod 'RxSwift', '~> 3.0'
-    pod 'RxCocoa', '~> 3.0'
-    pod 'RxDataSources', '~> 1.0'
+    pod 'RxSwift'
+    pod 'RxCocoa'
+    pod 'RxDataSources'
 end
 
 def import_Statistics
@@ -27,12 +27,12 @@ def import_Statistics
 end
 
 def import_Thoughtbot
-    pod "Perform", :git => 'https://github.com/thoughtbot/Perform.git', :branch => 'swift-3'
+    pod "Perform", :git => 'https://github.com/thoughtbot/Perform.git' 
     pod 'Delta', :git => "https://github.com/thoughtbot/Delta.git"
 end
 
 def import_SyntacticSugar
-    pod 'Then', '~> 2.1.0'
+    pod 'Then'
 end
 
 target 'HiPDA' do
@@ -50,15 +50,15 @@ target 'HiPDA' do
   pod 'YYKeyboardManager'
   pod 'YYText', '~> 1.0.7', :inhibit_warnings => true
   pod 'YYImage', '~> 1.0.4'
-  pod 'Moya/RxSwift', '~> 8.0.2'
-  pod 'AlamofireNetworkActivityIndicator', '~> 2.1.0'
+  pod 'Moya/RxSwift'
+  pod 'AlamofireNetworkActivityIndicator'
   pod 'MBProgressHUD'
   pod 'SDWebImage/GIF'
-  pod 'YYCache', '~> 1.0.4'
-  pod 'MJRefresh', '~> 3.1.12'
-  pod 'UITableView+FDTemplateLayoutCell', '~> 1.5.beta'
+  pod 'YYCache'
+  pod 'MJRefresh'
+  pod 'UITableView+FDTemplateLayoutCell' 
   pod 'WebViewJavascriptBridge', '~> 6.0.2'
-  pod 'HTMLString', '~> 3.0.0'
+  pod 'HTMLString' 
   #pod 'FDFullscreenPopGesture', '~> 1.1'
   #pod 'JZNavigationExtension', '~> 1.5.0.1'
   pod 'JSQMessagesViewController', '~> 7.3.4'
@@ -76,12 +76,12 @@ target 'HiPDA' do
 
 end
 
-# For Xcode 8.0 & Swift 3.0
+# For Xcode 11.0 & Swift 5.0
 post_install do |installer|
     installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|
-            config.build_settings['SWIFT_VERSION'] = '3.0'
-            config.build_settings['MACOSX_DEPLOYMENT_TARGET'] = '10.10'
+            config.build_settings['SWIFT_VERSION'] = '5.0'
+            config.build_settings['MACOSX_DEPLOYMENT_TARGET'] = '11.0'
         end
     end
 end

@@ -1,13 +1,11 @@
 import Foundation
 
 #if os(iOS) || os(macOS) || os(tvOS) || os(watchOS)
-
 extension NSString {
 
     ///
-    /// Returns a new string made from the `String` by replacing every character
-    /// incompatible with HTML Unicode encoding (UTF-16 or UTF-8) by a decimal
-    /// HTML entity.
+    /// Returns a copy of the current `String` where every character incompatible with HTML Unicode
+    /// encoding (UTF-16 or UTF-8) is replaced by a decimal HTML entity.
     ///
     /// ### Examples
     ///
@@ -18,17 +16,15 @@ extension NSString {
     /// | `🇺🇸` | `🇺🇸` | Not escaped (Unicode compliant) |
     /// | `a` | `a` | Not escaped (alphanumerical) |
     ///
-    /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
-    ///
 
     @objc(stringByAddingUnicodeEntities)
     public func addingUnicodeEntities() -> NSString {
-        return (self as String).addingUnicodeEntities as NSString
+        return NSString(string: String(self).addingUnicodeEntities())
     }
 
     ///
-    /// Returns a new string made from the `String` by replacing every character
-    /// incompatible with HTML ASCII encoding by a decimal HTML entity.
+    /// Returns a copy of the current `String` where every character incompatible with HTML ASCII
+    /// encoding is replaced by a decimal HTML entity.
     ///
     /// ### Examples
     ///
@@ -41,21 +37,18 @@ extension NSString {
     ///
     /// ### Performance
     ///
-    /// If your webpage is unicode encoded (UTF-16 or UTF-8) use `escapingForUnicodeHTML` instead
-    /// as it is faster, and produces less bloated and more readable HTML (as long as you are using
-    /// a unicode compliant HTML reader).
-    ///
-    /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
+    /// If your webpage is unicode encoded (UTF-16 or UTF-8) use `addingUnicodeEntities` instead,
+    /// as it is faster and produces a less bloated and more readable HTML.
     ///
 
     @objc(stringByAddingASCIIEntities)
     public func addingASCIIEntities() -> NSString {
-        return (self as String).addingASCIIEntities as NSString
+        return NSString(string: String(self).addingASCIIEntities())
     }
 
     ///
-    /// Returns a new string made from the `String` by replacing every HTML entity
-    /// with the matching Unicode character.
+    /// Returns a copy of the current `String` where every HTML entity is replaced with the matching
+    /// Unicode character.
     ///
     /// ### Examples
     ///
@@ -68,14 +61,10 @@ extension NSString {
     /// | `a` | `a` | Not an entity |
     /// | `&` | `&` | Not an entity |
     ///
-    /// **Complexity**: `O(N)` where `N` is the number of characters in the string.
-    ///
 
     @objc(stringByRemovingHTMLEntities)
     public func removingHTMLEntities() -> NSString {
-        return (self as String).removingHTMLEntities as NSString
+        return NSString(string: String(self).removingHTMLEntities())
     }
-
 }
-
 #endif

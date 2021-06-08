@@ -53,7 +53,7 @@ struct Regex {
             return []
         }
         return (0..<result.numberOfRanges).map { index in
-            return result.rangeAt(index).location != NSNotFound ? content.substring(with: result.rangeAt(index)) : ""
+            return result.range(at: index).location != NSNotFound ? content.substring(with: result.range(at: index)) : ""
         }
     }
     
@@ -71,7 +71,7 @@ struct Regex {
         let results = regex.matches(in: content as String, range: NSRange(location: 0, length: content.length))
         return results.map { result in
             return (0..<result.numberOfRanges).map { index in
-                return result.rangeAt(index).location != NSNotFound ? content.substring(with: result.rangeAt(index)) : ""
+                return result.range(at: index).location != NSNotFound ? content.substring(with: result.range(at: index)) : ""
             }
         }
     }

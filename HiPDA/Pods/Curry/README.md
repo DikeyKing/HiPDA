@@ -16,14 +16,25 @@ and instead using [one of the releases we've provided][releases].
 
 [releases]: https://github.com/thoughtbot/Curry/releases
 
-Here is the current Swift compatibility breakdown:
-
-| Swift Version | Curry Version |
-| ------------- | ------------- |
-| 3.X           | 3.X           |
-| 2.2, 2.3      | 2.X           |
-
 ## Installation ##
+
+### [Swift Package Manager] ###
+
+[Swift Package Manager]: https://swift.org/package-manager/
+
+Add this as a package dependency in Xcode:
+
+```
+https://github.com/thoughtbot/Curry
+```
+
+Or add it as a dependency in your Package.swift file:
+
+```swift
+dependencies: [
+  .package(url: "https://github.com/thoughtbot/Curry", from: "5.0.0"),
+]
+```
 
 ### [Carthage] ###
 
@@ -82,9 +93,9 @@ About
 Curry is maintained and funded by thoughtbot, inc. The names and logos for
 thoughtbot are trademarks of thoughtbot, inc.
 
-We love open source software! See [our other projects][community] or look at
-our product [case studies] and [hire us][hire] to help build your iOS app.
+We love open source software! See [our other projects][tools] or look at
+our product [case studies] and [hire us][hire] to help build your iOS app. We also have a collection of resources for [learning iOS development](https://thoughtbot.com/upcase/ios) at Upcase. 
 
-[community]: https://thoughtbot.com/community?utm_source=github
+[tools]: https://thoughtbot.com/tools
 [case studies]: https://thoughtbot.com/ios?utm_source=github
 [hire]: https://thoughtbot.com/hire-us?utm_source=github

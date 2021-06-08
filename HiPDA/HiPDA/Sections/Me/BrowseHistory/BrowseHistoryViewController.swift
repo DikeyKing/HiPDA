@@ -39,7 +39,7 @@ class BrowseHistoryViewController: BaseViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "清空", style: .plain, target: self, action: #selector(clear))
     }
     
-    func clear() {
+    @objc func clear() {
         viewModel.clear()
         tableView.reloadData()
         tableView.status = .noResult

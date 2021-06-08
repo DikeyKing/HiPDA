@@ -42,7 +42,7 @@ class FavoritesAndAttentionBaseViewController: BaseViewController {
         }
     }
     
-    func selectButtonSelected() {
+    @objc @objc func selectButtonSelected() {
         isTableViewInMultipleSelectionMode = !isTableViewInMultipleSelectionMode
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: isTableViewInMultipleSelectionMode ? "取消" : "编辑", style: .plain, target: self, action: #selector(selectButtonSelected))
         tableView.setEditing(isTableViewInMultipleSelectionMode, animated: true)

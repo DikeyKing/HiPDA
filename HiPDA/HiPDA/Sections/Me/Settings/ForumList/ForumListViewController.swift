@@ -45,7 +45,7 @@ class ForumListViewController: BaseViewController {
         
         let confirm = UIBarButtonItem(title: "确定", style: .plain, target: nil, action: nil)
         confirm.rx.tap.subscribe(onNext: { [unowned self] _ in
-            self.presentingViewController?.dismiss(animated: true) { _ in
+            self.presentingViewController?.dismiss(animated: true) { 
                 self.willDismiss.onNext(())
             }
         }).addDisposableTo(disposeBag)

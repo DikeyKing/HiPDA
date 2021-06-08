@@ -1,53 +1,53 @@
 PODS:
-  - AcknowList (1.2)
-  - Alamofire (4.4.0)
-  - AlamofireNetworkActivityIndicator (2.1.0):
-    - Alamofire (~> 4.1)
-  - Argo (4.1.2):
-    - Runes (>= 4.0.0)
+  - AcknowList (2.0.1)
+  - Alamofire (5.4.3)
+  - AlamofireNetworkActivityIndicator (3.1.0):
+    - Alamofire (~> 5.1)
+  - Argo (5.0.0):
+    - Runes (>= 5.0.0)
   - Aspects (1.4.1)
-  - Crashlytics (3.8.5):
-    - Fabric (~> 1.6.3)
-  - Curry (3.0.0)
+  - Crashlytics (3.14.0):
+    - Fabric (~> 1.10.2)
+  - Curry (5.0.0)
   - Delta (1.0.0)
-  - Fabric (1.6.11)
-  - FBRetainCycleDetector (0.1.3)
-  - FLAnimatedImage (1.0.12)
-  - FLEX (2.4.0)
-  - HandyJSON (1.6.0)
-  - HTMLString (3.0.0)
-  - JSQMessagesViewController (7.3.4):
+  - Differentiator (4.0.1)
+  - Fabric (1.10.2)
+  - FLAnimatedImage (1.0.16)
+  - FLEX (4.4.1)
+  - HandyJSON (5.0.2)
+  - HTMLString (6.0.1)
+  - JSQMessagesViewController (7.3.5):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
-  - MBProgressHUD (1.0.0)
-  - MJRefresh (3.1.12)
-  - MLeaksFinder (0.2.1):
-    - FBRetainCycleDetector
-  - Moya/Core (8.0.2):
-    - Alamofire (~> 4.1)
-    - Result (~> 3.0)
-  - Moya/RxSwift (8.0.2):
+  - MBProgressHUD (1.2.0)
+  - MJRefresh (3.6.1)
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
+  - Moya/RxSwift (14.0.0):
     - Moya/Core
-    - RxSwift (~> 3.0)
-  - Perform (1.0.0):
-    - Aspects (~> 1.4.1)
-  - Result (3.2.0)
+    - RxSwift (~> 5.0)
+  - Perform (2.0.2):
+    - Aspects (~> 1.4)
   - Reveal-iOS-SDK (1.6.2)
-  - Runes (4.0.1)
-  - RxCocoa (3.2.0):
-    - RxSwift (~> 3.1)
-  - RxDataSources (1.0.3):
-    - RxCocoa (~> 3.0)
-    - RxSwift (~> 3.0)
-  - RxSwift (3.2.0)
-  - SAMKeychain (1.5.2)
-  - SDWebImage/Core (4.0.0)
-  - SDWebImage/GIF (4.0.0):
+  - Runes (5.1.0)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.2)
+  - SAMKeychain (1.5.3)
+  - SDWebImage/Core (4.4.8)
+  - SDWebImage/GIF (4.4.8):
     - FLAnimatedImage (~> 1.0)
     - SDWebImage/Core
-  - Then (2.1.0)
-  - UITableView+FDTemplateLayoutCell (1.5.beta)
-  - WebViewJavascriptBridge (6.0.2)
+  - Then (2.7.0)
+  - "UITableView+FDTemplateLayoutCell (1.6)"
+  - WebViewJavascriptBridge (6.0.3)
   - YYCache (1.0.4)
   - YYImage (1.0.4):
     - YYImage/Core (= 1.0.4)
@@ -57,41 +57,75 @@ PODS:
 
 DEPENDENCIES:
   - AcknowList
-  - AlamofireNetworkActivityIndicator (~> 2.1.0)
-  - Argo (~> 4.1)
+  - AlamofireNetworkActivityIndicator
+  - Argo
   - Crashlytics
-  - Curry (~> 3.0.0)
+  - Curry
   - Delta (from `https://github.com/thoughtbot/Delta.git`)
   - Fabric
   - FLEX
-  - HandyJSON (~> 1.6)
-  - HTMLString (~> 3.0.0)
+  - HandyJSON
+  - HTMLString
   - JSQMessagesViewController (~> 7.3.4)
   - MBProgressHUD
-  - MJRefresh (~> 3.1.12)
-  - MLeaksFinder
-  - Moya/RxSwift (~> 8.0.2)
-  - Perform (from `https://github.com/thoughtbot/Perform.git`, branch `swift-3`)
+  - MJRefresh
+  - Moya/RxSwift
+  - Perform (from `https://github.com/thoughtbot/Perform.git`)
   - Reveal-iOS-SDK
-  - Runes (~> 4.0)
-  - RxCocoa (~> 3.0)
-  - RxDataSources (~> 1.0)
-  - RxSwift (~> 3.0)
+  - Runes
+  - RxCocoa
+  - RxDataSources
+  - RxSwift
   - SAMKeychain
   - SDWebImage/GIF
-  - Then (~> 2.1.0)
-  - UITableView+FDTemplateLayoutCell (~> 1.5.beta)
+  - Then
+  - "UITableView+FDTemplateLayoutCell"
   - WebViewJavascriptBridge (~> 6.0.2)
-  - YYCache (~> 1.0.4)
+  - YYCache
   - YYImage (~> 1.0.4)
   - YYKeyboardManager
   - YYText (~> 1.0.7)
+
+SPEC REPOS:
+  trunk:
+    - AcknowList
+    - Alamofire
+    - AlamofireNetworkActivityIndicator
+    - Argo
+    - Aspects
+    - Crashlytics
+    - Curry
+    - Differentiator
+    - Fabric
+    - FLAnimatedImage
+    - FLEX
+    - HandyJSON
+    - HTMLString
+    - JSQMessagesViewController
+    - JSQSystemSoundPlayer
+    - MBProgressHUD
+    - MJRefresh
+    - Moya
+    - Reveal-iOS-SDK
+    - Runes
+    - RxCocoa
+    - RxDataSources
+    - RxRelay
+    - RxSwift
+    - SAMKeychain
+    - SDWebImage
+    - Then
+    - "UITableView+FDTemplateLayoutCell"
+    - WebViewJavascriptBridge
+    - YYCache
+    - YYImage
+    - YYKeyboardManager
+    - YYText
 
 EXTERNAL SOURCES:
   Delta:
     :git: https://github.com/thoughtbot/Delta.git
   Perform:
-    :branch: swift-3
     :git: https://github.com/thoughtbot/Perform.git
 
 CHECKOUT OPTIONS:
@@ -99,47 +133,46 @@ CHECKOUT OPTIONS:
     :commit: bd46119899703e976e655fcde9e668d28df55014
     :git: https://github.com/thoughtbot/Delta.git
   Perform:
-    :commit: aa71482dd9dfdc5ce3e8baf91ba08b751a8a04f9
+    :commit: e0009ff13052af03e816bd59e9a58c530ef701d6
     :git: https://github.com/thoughtbot/Perform.git
 
 SPEC CHECKSUMS:
-  AcknowList: 18ccee4d933a153622416cce2d36e6864ec147ea
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
-  AlamofireNetworkActivityIndicator: 4716f6554bdfb9c7cf13b1e0e3af21163129690a
-  Argo: 5db06502fc1222d83011f574243089dab25202ff
+  AcknowList: d5476fd33f5c4614c676933ab79d05775e5e20b7
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  AlamofireNetworkActivityIndicator: 6564782bd7b9e6c430ae67d9277af01907b01ca4
+  Argo: 9c73ffc87202ad7db82580786cca054153249624
   Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
-  Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
-  Curry: eb3d2c75aec678b3cc7fb2729d2ad6dd121531d1
+  Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
+  Curry: 9807b3a3e5056d73c38c7eeb3cf846cd88cd3d2a
   Delta: 35694e6e06a7e5d9dd8a25f3b0768ed66c0579c5
-  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  FBRetainCycleDetector: f0c7b290bf48ae77f6ae060843ce34ae341781eb
-  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
-  HandyJSON: 573a148e2c649d108a8d6fbee1874c5c2d0822ca
-  HTMLString: 57f421a65b10c4eba75a16c329d1cc82a2167ab3
-  JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
+  Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
+  FLAnimatedImage: 8f3e854ebf9680b71f0b6e700939687fc4d82b4b
+  FLEX: 7ca2c8cd3a435ff501ff6d2f2141e9bdc934eaab
+  HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
+  HTMLString: 4abe8cbe94660b328bbe4fc014dabdf0481b16a7
+  JSQMessagesViewController: 6587f56aedbcb150a8ba1d968e1ef58b1bc758b7
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
-  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
-  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
-  MLeaksFinder: 0850e2f2abc7227adc4d4e2d1992b431264eb4d5
-  Moya: 47f61da5b634aa71f676431b64ee0f81e976296d
-  Perform: c3e2f75ee31db051d5afbe1282d7a48ba68f8747
-  Result: 5a6705171c0613cc5fbf6ec55ff520cc62a8e81d
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  MJRefresh: d2c1970d1cf6e77fcfcdfe76c943dfab8dbfa5c1
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  Perform: 5876a8bd416b406bb471d37122961d45eaec961a
   Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
-  Runes: ff20f163b478ac2c0e18158d6086fd5b1997f983
-  RxCocoa: ccdf43101a70407097a29082f648ba1676075b30
-  RxDataSources: a021a0e944ba5f7991259829d973afdbfa719c0b
-  RxSwift: 46574f70d416b7923c237195939cc488a7fbf3a0
-  SAMKeychain: 1865333198217411f35327e8da61b43de79b635b
-  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
-  Then: 8496793c8fcac95482b943909b440724c7d8d82c
-  UITableView+FDTemplateLayoutCell: 02b508ab1cb4cea16a8c17ac83d2cd1fd72124f9
-  WebViewJavascriptBridge: 791ee0e26d1bf15efe5fb7fb9666a71a19b89d77
+  Runes: c9634b39d102aa684a12deaa3611f2643a0bb0a1
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 1e2e1f9570186967f617e49128ed26ccf1bafc8e
+  SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
+  SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
+  Then: acfe0be7e98221c6204e12f8161459606d5d822d
+  "UITableView+FDTemplateLayoutCell": 5c949b4a5059c404b442926c0e80f81d10a2d66f
+  WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYKeyboardManager: ff53d2e80d1808567a7f004028bd200d9469a89f
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: d7be0c714d2bf1086fd5b34db70affbbcc955119
+PODFILE CHECKSUM: c86cf610445f72fd0bdf2d94d0891208dd38c19f
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.10.1

@@ -68,7 +68,7 @@ class ImageBrowserCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         imageView.sd_setShowActivityIndicatorView(true)
-        imageView.sd_setIndicatorStyle(.whiteLarge)
+        imageView.sd_setIndicatorStyle(.UIActivityIndicatorViewStyle.large)
         scrollView.delegate = self
         
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped(_:)))
@@ -120,12 +120,12 @@ class ImageBrowserCollectionViewCell: UICollectionViewCell {
     
     var isImageLoaded = false
     
-    func singleTapped(_ tapGestureRecognizer: UITapGestureRecognizer) {
+    @objc func singleTapped(_ tapGestureRecognizer: UITapGestureRecognizer) {
         delegate?.pressed(cell: self)
     }
     
     // https://stackoverflow.com/questions/3967971/how-to-zoom-in-out-photo-on-double-tap-in-the-iphone-wwdc-2010-104-photoscroll
-    func doubleTapped(_ tapGestureRecognizer: UITapGestureRecognizer) {
+    @objc func doubleTapped(_ tapGestureRecognizer: UITapGestureRecognizer) {
         guard isImageLoaded else { return }
         if (scrollView.zoomScale > scrollView.minimumZoomScale) {
             scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
@@ -135,7 +135,7 @@ class ImageBrowserCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func longPressed(_ sender: UILongPressGestureRecognizer) {
+    @objc func longPressed(_ sender: UILongPressGestureRecognizer) {
         guard isImageLoaded else { return }
         if sender.state == .began {
             delegate?.longPressedCell(self)

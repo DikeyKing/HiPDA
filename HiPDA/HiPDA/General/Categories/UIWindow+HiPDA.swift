@@ -15,8 +15,8 @@ extension UIWindow {
     open override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         super.motionEnded(motion, with: event)
         if motion == .motionShake {
-            if FLEXManager.shared().isHidden {
-                FLEXManager.shared().showExplorer()
+            if FLEXManager.shared.isHidden {
+                FLEXManager.shared.showExplorer()
             }
             if FPSAssistiveTouch.shared.isHidden {
                 FPSAssistiveTouch.shared.show()

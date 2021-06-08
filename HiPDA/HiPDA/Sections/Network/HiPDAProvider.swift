@@ -32,7 +32,7 @@ private func HiPDAManager() -> Manager {
     return manager
 }
 
-private func HiPDAEndpointMapping<Target: TargetType>(_ target: Target) -> Endpoint<Target> {
+private func HiPDAEndpointMapping<Target: TargetType>(_ target: Target) -> Endpoint {
     let url = "\(target.baseURL.absoluteString)\(target.path)"
     return Endpoint(url: url, sampleResponseClosure: {.networkResponse(200, target.sampleData)}, method: target.method, parameters: target.parameters, parameterEncoding: GBKURLEncoding())
 }
@@ -59,7 +59,7 @@ extension Moya.Response {
     }
 }
 
-extension ObservableType where E == Response {
+extension ObservableType where Element == Response {
     public func mapGBKString() -> Observable<String> {
         return flatMap { response -> Observable<String> in
             return Observable.just(try response.mapGBKString())

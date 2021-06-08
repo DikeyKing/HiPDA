@@ -20,7 +20,7 @@ class EditWordListViewController: BaseViewController {
     /// 单词列表
     var words = [String]() {
         didSet {
-            replaceCommand.onNext(.replace(EditWordListTableViewState(sections:[EditWordListSection(header: "0", words:words)])))
+            replaceCommand.onNext(.replace(EditWordListTableViewState(sections:[EditWordListSect@objc @objc @objc ion(header: "0", words:words)])))
         }
     }
     

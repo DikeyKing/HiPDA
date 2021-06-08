@@ -31,7 +31,7 @@ class ImagePickerViewController: BaseViewController {
         
         title = "选择图片"
         segmentedControl.selectedSegmentIndex = ImageCompressType.original.rawValue
-        segmentedControl.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .selected)
+        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white], for: .selected)
         skinViewModel()
         skinCollectionView()
         NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive(_:)), name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
@@ -41,7 +41,7 @@ class ImagePickerViewController: BaseViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func didBecomeActive(_ notification: Notification) {
+    @objc func didBecomeActive(_ notification: Notification) {
         viewModel.loadAssets()
         let allAssets = viewModel.getAssets()
         for asset in viewModel.imageAsstesCollection.getAssets() {
@@ -60,7 +60,7 @@ class ImagePickerViewController: BaseViewController {
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.shadowImage = UIImage()
         navigationBar.barStyle = .black
-        navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName: UIColor.white]
+        navigationBar.titleTextAttributes = [ NSAttributedStringKey.foregroundColor: UIColor.white]
     }
     
     fileprivate func skinCollectionView() {
@@ -156,11 +156,11 @@ extension ImagePickerViewController: UICollectionViewDataSource {
 // MARK: - Button Actions
 
 extension ImagePickerViewController {
-    func cancel() {
+    @objc func cancel() {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
-    func confirm() {
+    @objc func confirm() {
         showPromptInformation(of: .loading("正在上传..."))
         viewModel.uploadAssets { [weak self] result in
             guard let `self` = self else { return }

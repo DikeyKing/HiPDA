@@ -35,7 +35,7 @@ class MessageViewController: BaseViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func messageViewControllerTabRepeatedSelected() {
+    @objc func messageViewControllerTabRepeatedSelected() {
         currentVisibleChildrenViewController.messageViewControllerTabRepeatedSelected()
     }
     

@@ -33,5 +33,5 @@ public protocol ActionType {
      - parameter state: The current state of the store.
      - returns: The new state.
     */
-    func reduce(_ state: StateValueType) -> StateValueType
+    func reduce(state: StateValueType) -> StateValueType
 }

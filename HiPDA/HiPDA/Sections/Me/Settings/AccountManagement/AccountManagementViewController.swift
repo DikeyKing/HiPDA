@@ -41,7 +41,7 @@ class AccountManagementViewController: BaseViewController {
         tabBarController?.tabBar.isHidden = true
     }
     
-    func editButtonPressed(sender: UIBarButtonItem) {
+    @objc func editButtonPressed(sender: UIBarButtonItem) {
         struct StaticVars {
             static var isEditing = false
         }

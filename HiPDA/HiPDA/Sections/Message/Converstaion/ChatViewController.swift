@@ -93,10 +93,11 @@ extension ChatViewController {
             case .outgoing:
                 messageCell.textView.textColor = .black
             }
-            messageCell.textView.linkTextAttributes = [
-                NSForegroundColorAttributeName: messageCell.textView.textColor ?? .white,
-                NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue | NSUnderlineStyle.patternSolid.rawValue
-            ]
+            #warning("todo")
+//            messageCell.textView.linkTextAttributes = [
+//                NSForegroundColorAttributeName: messageCell.textView.textColor ?? .white,
+//                NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue | NSUnderlineStyle.patternSolid.rawValue
+//            ]
         }
         
         return cell

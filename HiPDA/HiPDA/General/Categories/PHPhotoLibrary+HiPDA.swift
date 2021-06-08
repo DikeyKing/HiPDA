@@ -32,9 +32,15 @@ extension PHPhotoLibrary {
                     case .notDetermined:
                         // won't happen but still
                         completion(false)
+                    default:
+                        completion(true)
+                    break
                     }
                 }
             }
+        default:
+            completion(true)
+        break
         }
     }
 }

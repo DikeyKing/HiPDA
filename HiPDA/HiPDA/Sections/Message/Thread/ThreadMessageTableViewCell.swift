@@ -47,14 +47,14 @@ class ThreadMessageTableViewCell: UITableViewCell {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineBreakMode = .byCharWrapping
             let attributes = [
-                NSParagraphStyleAttributeName: paragraphStyle,
-                NSFontAttributeName: UIFont.systemFont(ofSize: 16.0),
-                NSForegroundColorAttributeName: #colorLiteral(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
+                NSAttributedStringKey.paragraphStyle: paragraphStyle,
+                NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16.0),
+                NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
             ]
             attri.addAttributes(attributes, range: NSRange(location: 0, length: (text as NSString).length))
             let index = (text as NSString).range(of: ":").location
             if index != NSNotFound {
-                attri.addAttribute(NSForegroundColorAttributeName, value: color, range: NSRange(location: 0, length: index + 1))
+                attri.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: NSRange(location: 0, length: index + 1))
             }
             label.attributedText = attri
         }
@@ -64,8 +64,8 @@ class ThreadMessageTableViewCell: UITableViewCell {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineBreakMode = .byCharWrapping
         let attributes = [
-            NSParagraphStyleAttributeName: paragraphStyle,
-            NSFontAttributeName: UIFont.systemFont(ofSize: 16.0)
+            NSAttributedStringKey.paragraphStyle: paragraphStyle,
+            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16.0)
         ]
         let height = (text as NSString).boundingRect(with: CGSize(width: Constants.contentWidth, height: .greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: attributes, context: nil).height
         return height.pixelCeil

@@ -21,16 +21,16 @@ class NetworkReachabilityManager {
     }
     
     var isReachableOnWWAN: Bool {
-        return manager?.isReachableOnWWAN ?? false
+        return manager?.isReachableOnCellular ?? false
     }
     
     var isReachableOnEthernetOrWiFi: Bool {
         return manager?.isReachableOnEthernetOrWiFi ?? false
     }
     
-    @discardableResult
-    public func startListening() -> Bool {
-        return manager?.startListening() ?? false
+    public func startListening() {
+        manager?.startListening(onUpdatePerforming: { _  in
+        })
     }
     
     func stopListening() {

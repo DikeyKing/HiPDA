@@ -63,7 +63,7 @@ class HomeViewController: BaseViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func homeViewControllerTabRepeatedSelected() {
+    @objc func homeViewControllerTabRepeatedSelected() {
         guard tableView.status == .normal else { return }
         if tableView.contentOffset.y == 0 {
             tableView.refreshing()
@@ -90,7 +90,7 @@ class HomeViewController: BaseViewController {
 // MARK: - Button Action
 
 extension HomeViewController {
-    func newThreadButtonPressed(_ sender: UIBarButtonItem) {
+    @objc func newThreadButtonPressed(_ sender: UIBarButtonItem) {
         let newThreadVC = NewThreadViewController.load(from: .home)
         newThreadVC.type = .new(fid: ForumManager.fid(ofForumName: forumName))
         let nav = UINavigationController(rootViewController: newThreadVC)
@@ -98,7 +98,7 @@ extension HomeViewController {
         present(nav, animated: true, completion: nil)
     }
     
-    func filterButtonPressed(_ sender: UIBarButtonItem) {
+    @objc func filterButtonPressed(_ sender: UIBarButtonItem) {
         guard let filterVC = storyboard?.instantiateViewController(withIdentifier: ThreadFilterViewController.identifier) as? ThreadFilterViewController,
             let sourceView = navigationItem.leftBarButtonItem?.value(forKey: "view") as? UIView else { return }
         filterVC.modalPresentationStyle = .popover
@@ -106,7 +106,6 @@ extension HomeViewController {
         filterVC.popoverPresentationController?.sourceView = sourceView
         let sourceRect = CGRect(x: 0, y: 0, width: sourceView.frame.size.width, height: 25)
         filterVC.popoverPresentationController?.sourceRect = sourceRect
-        filterVC.popoverPresentationController?.backgroundColor = .groupTableViewBackground
         filterVC.popoverPresentationController?.delegate = self
         
         let filter = ThreadFilterManager.shared.filter(for: forumName)
